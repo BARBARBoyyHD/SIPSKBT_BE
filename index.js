@@ -26,7 +26,7 @@ const validateSurat = multer({
 }).single("surat_disetujui"); // Accept a single file with the field name "surat_disetujui"
 
 app.use(cors({
-  origin: 'http://localhost:3000', // Replace with your frontend origin
+  origin: 'https://sipskbt-sulsel.vercel.app', // Replace with your frontend origin
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true, // Allow cookies and authorization headers
 }));
