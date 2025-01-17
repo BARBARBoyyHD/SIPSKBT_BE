@@ -20,16 +20,24 @@ const upload = multer({
   { name: "SKPP", maxCount: 1 }, // SKPP file
   { name: "SPTDP", maxCount: 1 }, // SPTDP file
 ]);
+const allowedOrigins = ['https://sipskbt-sulsel.vercel.app', 'http://localhost:3000'];
 
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+};
 const validateSurat = multer({
   storage: multer.memoryStorage(), // Store the file in memory
 }).single("surat_disetujui"); // Accept a single file with the field name "surat_disetujui"
 
-app.use(cors({
-  origin: 'https://sipskbt-sulsel.vercel.app', // Replace with your frontend origin
-  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true, // Allow cookies and authorization headers
-}));
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser())
 const PORT = process.env.PORT;
