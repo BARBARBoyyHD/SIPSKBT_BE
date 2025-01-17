@@ -68,20 +68,20 @@ exports.login = async (req, res) => {
       .cookie("accessToken", accessToken, {
         httpOnly: true,
         maxAge: 60 * 60 * 1000, // 1 hour
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
+        secure: true,
+        sameSite: "none",
       })
       .cookie("refreshToken", refreshToken, {
         httpOnly: true,
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
+        secure: true,
+        sameSite: "none",
       })
       .cookie("CSRF-TOKEN", csrfToken, {
         httpOnly: true,
         maxAge: 60 * 60 * 1000, // 1 hour
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "strict",
+        secure: true,
+        sameSite: "none",
       });
     return res.status(200).json({
       message: "Login successful!",
