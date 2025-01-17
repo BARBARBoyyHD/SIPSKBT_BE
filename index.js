@@ -20,7 +20,7 @@ const upload = multer({
   { name: "SKPP", maxCount: 1 }, // SKPP file
   { name: "SPTDP", maxCount: 1 }, // SPTDP file
 ]);
-const allowedOrigins = ['https://sipskbt-sulsel.vercel.app', 'http://localhost:3000'];
+const allowedOrigins = ['https://sipskbt-sulsel.vercel.app'];
 
 const corsOptions = {
   origin: function (origin, callback) {
